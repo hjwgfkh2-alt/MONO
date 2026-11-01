@@ -37,7 +37,14 @@ body {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.wrap { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+.wrap { max-width: 430px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+.by { margin: 0; font-weight: 700; font-size: 1.05rem; }
+.foot { margin: 0; text-align: center; color: var(--muted); font-size: 0.9rem; }
+/* على الشاشات الكبيرة الصفحة بتظهر جوه إطار بمقاس التليفون */
+@media (min-width: 600px) {
+  body { padding-block: 24px; }
+  .wrap { border: 8px solid var(--ink); border-radius: 40px; padding: 30px 18px 26px; min-height: 860px; }
+}
 .office { font-family: var(--font-display); color: var(--accent); font-size: 1.05rem; letter-spacing: 0.04em; margin: 0; }
 h1 { font-family: var(--font-display); font-size: 2.2rem; line-height: 1.25; margin: 2px 0 6px; text-wrap: balance; }
 .lead { margin: 0; color: var(--muted); }
@@ -86,6 +93,7 @@ form[hidden], .done[hidden] { display: none; }
   <header>
     <p class="office">MTA العربي</p>
     <h1>سجّل معانا كطيّار</h1>
+    <p class="by">مع أستاذ عبقرينو</p>
     <p class="lead">املا البيانات دي وهنتواصل معاك على الرقم اللي هتكتبه.</p>
   </header>
 
@@ -175,6 +183,8 @@ form[hidden], .done[hidden] { display: none; }
     <h2>وصلتنا بياناتك</h2>
     <p>شكرًا ليك. هنتواصل معاك قريب على الرقم اللي كتبته.</p>
   </section>
+
+  <p class="foot">MTA العربي · أستاذ عبقرينو</p>
 </div>
 
 <script>
