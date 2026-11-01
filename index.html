@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>تسجيل الطيارين</title>
+<title>تواصل مع أستاذ محمد كرافك</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@600;700&family=Cairo:wght@400;600;700&display=swap">
 <style>
-/* Layout: one narrow column, a short header with the office name, then a single form card and a clear send button. */
+/* Layout: one phone-width column, a short header, one form card and one clear send button. */
 :root {
   --bg: #eef1f6;
   --ink: #14202e;
@@ -38,32 +38,27 @@ body {
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 .wrap { max-width: 430px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
-.by { margin: 0; font-weight: 700; font-size: 1.05rem; }
-.foot { margin: 0; text-align: center; color: var(--muted); font-size: 0.9rem; }
-/* على الشاشات الكبيرة الصفحة بتظهر جوه إطار بمقاس التليفون */
 @media (min-width: 600px) {
   body { padding-block: 24px; }
-  .wrap { border: 8px solid var(--ink); border-radius: 40px; padding: 30px 18px 26px; min-height: 860px; }
+  .wrap { border: 8px solid var(--ink); border-radius: 40px; padding: 30px 18px 26px; min-height: 760px; }
 }
-.office { font-family: var(--font-display); color: var(--accent); font-size: 1.05rem; letter-spacing: 0.04em; margin: 0; }
-h1 { font-family: var(--font-display); font-size: 2.2rem; line-height: 1.25; margin: 2px 0 6px; text-wrap: balance; }
+h1 { font-family: var(--font-display); font-size: 2.1rem; line-height: 1.3; margin: 0 0 6px; text-wrap: balance; }
 .lead { margin: 0; color: var(--muted); }
 form, .done {
   background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 22px;
   display: flex; flex-direction: column; gap: 18px; box-shadow: 0 10px 30px rgba(10, 20, 40, 0.08);
 }
+form[hidden], .done[hidden] { display: none; }
 .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 label, legend { font-weight: 700; font-size: 0.98rem; padding: 0; }
-.opt { color: var(--muted); font-weight: 400; font-size: 0.88rem; }
-input[type="text"], input[type="tel"], input[type="number"], select, textarea {
+input[type="text"], input[type="tel"], textarea {
   font: 400 1rem var(--font-body); color: var(--ink); background: var(--field);
   border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; width: 100%; min-width: 0;
 }
-textarea { min-height: 90px; resize: vertical; }
-input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, .choice input:focus-visible + span {
+textarea { min-height: 120px; resize: vertical; }
+input:focus-visible, textarea:focus-visible, button:focus-visible, .choice input:focus-visible + span {
   outline: 3px solid var(--accent); outline-offset: 2px;
 }
-.row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
 .choices { display: flex; flex-wrap: wrap; gap: 8px; }
 .choice { position: relative; }
@@ -82,19 +77,15 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-d
 .send:disabled { opacity: 0.6; cursor: wait; }
 .status { margin: 0; text-align: center; font-weight: 600; min-height: 1.4em; }
 .status.bad { color: var(--err); }
-form[hidden], .done[hidden] { display: none; }
 .done h2 { font-family: var(--font-display); font-size: 1.7rem; margin: 0; color: var(--ok); }
 .done p { margin: 0; }
-@media (max-width: 440px) { .row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <p class="office">MTA العربي</p>
-    <h1>سجّل معانا كطيّار</h1>
-    <p class="by">مع أستاذ عبقرينو</p>
-    <p class="lead">املا البيانات دي وهنتواصل معاك على الرقم اللي هتكتبه.</p>
+    <h1>تواصل مع أستاذ محمد كرافك</h1>
+    <p class="lead">املا البيانات دي وهيتواصل معاك على الرقم اللي هتكتبه.</p>
   </header>
 
   <form id="form" novalidate>
@@ -110,65 +101,21 @@ form[hidden], .done[hidden] { display: none; }
       <p class="err" id="e-phone"></p>
     </div>
 
-    <div class="row">
-      <div class="field">
-        <label for="age">السن</label>
-        <input id="age" name="السن" type="number" inputmode="numeric" min="18" max="65" required>
-        <p class="err" id="e-age"></p>
-      </div>
-      <div class="field">
-        <label for="gov">المحافظة</label>
-        <select id="gov" name="المحافظة" required>
-          <option value="">اختار</option>
-          <option>القاهرة</option><option>الجيزة</option><option>الإسكندرية</option><option>القليوبية</option>
-          <option>الشرقية</option><option>الدقهلية</option><option>الغربية</option><option>المنوفية</option>
-          <option>البحيرة</option><option>الفيوم</option><option>بني سويف</option><option>المنيا</option>
-          <option>أسيوط</option><option>سوهاج</option><option>قنا</option><option>الأقصر</option><option>أسوان</option>
-          <option>بورسعيد</option><option>الإسماعيلية</option><option>السويس</option><option>دمياط</option>
-          <option>كفر الشيخ</option><option>مطروح</option><option>البحر الأحمر</option><option>شمال سيناء</option>
-          <option>جنوب سيناء</option><option>الوادي الجديد</option>
-        </select>
-        <p class="err" id="e-gov"></p>
-      </div>
-    </div>
-
     <div class="field">
-      <label for="area">المنطقة اللي ساكن فيها</label>
-      <input id="area" name="المنطقة" type="text" autocomplete="address-level2" required>
-      <p class="err" id="e-area"></p>
+      <label for="msg">عايز تتواصل في إيه؟</label>
+      <textarea id="msg" name="الرسالة" required></textarea>
+      <p class="err" id="e-msg"></p>
     </div>
 
     <fieldset>
-      <legend>عندك إيه؟</legend>
+      <legend>أنسب وقت للتواصل</legend>
       <div class="choices">
-        <label class="choice"><input type="radio" name="المركبة" value="موتوسيكل" checked><span>موتوسيكل</span></label>
-        <label class="choice"><input type="radio" name="المركبة" value="عجلة"><span>عجلة</span></label>
-        <label class="choice"><input type="radio" name="المركبة" value="عربية"><span>عربية</span></label>
-        <label class="choice"><input type="radio" name="المركبة" value="مفيش"><span>مفيش مركبة</span></label>
+        <label class="choice"><input type="radio" name="الوقت" value="أي وقت" checked><span>أي وقت</span></label>
+        <label class="choice"><input type="radio" name="الوقت" value="الصبح"><span>الصبح</span></label>
+        <label class="choice"><input type="radio" name="الوقت" value="بعد الضهر"><span>بعد الضهر</span></label>
+        <label class="choice"><input type="radio" name="الوقت" value="بالليل"><span>بالليل</span></label>
       </div>
     </fieldset>
-
-    <fieldset>
-      <legend>عندك رخصة؟</legend>
-      <div class="choices">
-        <label class="choice"><input type="radio" name="الرخصة" value="أيوه" checked><span>أيوه</span></label>
-        <label class="choice"><input type="radio" name="الرخصة" value="لأ"><span>لأ</span></label>
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <legend>اشتغلت توصيل قبل كده؟</legend>
-      <div class="choices">
-        <label class="choice"><input type="radio" name="الخبرة" value="أول مرة" checked><span>أول مرة</span></label>
-        <label class="choice"><input type="radio" name="الخبرة" value="أقل من سنة"><span>أقل من سنة</span></label>
-        <label class="choice"><input type="radio" name="الخبرة" value="أكتر من سنة"><span>أكتر من سنة</span></label>
-      </div>
-    </fieldset>
-
-    <div class="field">
-      <label for="note">ملاحظات <span class="opt">(اختياري)</span></label>
-      <textarea id="note" name="ملاحظات"></textarea>
-    </div>
 
     <div class="hp" aria-hidden="true">
       <label for="website">سيبه فاضي</label>
@@ -180,16 +127,13 @@ form[hidden], .done[hidden] { display: none; }
   </form>
 
   <section class="done" id="done" hidden>
-    <h2>وصلتنا بياناتك</h2>
-    <p>شكرًا ليك. هنتواصل معاك قريب على الرقم اللي كتبته.</p>
+    <h2>وصلتنا رسالتك</h2>
+    <p>شكرًا ليك. أستاذ محمد كرافك هيتواصل معاك قريب على الرقم اللي كتبته.</p>
   </section>
-
-  <p class="foot">MTA العربي · أستاذ عبقرينو</p>
 </div>
 
 <script>
 (function () {
-  // حط هنا لينك الفورم من Formspree بالشكل ده: https://formspree.io/f/xxxxxxxx
   var FORM_ENDPOINT = "https://formspree.io/f/xgaanlwz";
 
   var form = document.getElementById("form");
@@ -205,14 +149,11 @@ form[hidden], .done[hidden] { display: none; }
 
   function validate() {
     var ok = true;
-    var name = form.elements["name"].value.trim();
+    var name = document.getElementById("name").value.trim();
     ok = setErr("name", name.split(/\s+/).length >= 2 ? "" : "اكتب اسمك الأول والتاني على الأقل.") && ok;
-    var phone = toLatinDigits(form.elements["phone"].value).replace(/[\s-]/g, "");
+    var phone = toLatinDigits(document.getElementById("phone").value).replace(/[\s-]/g, "");
     ok = setErr("phone", /^01[0125]\d{8}$/.test(phone) ? "" : "اكتب رقم موبايل مصري صح، من 11 رقم.") && ok;
-    var age = parseInt(toLatinDigits(form.elements["age"].value), 10);
-    ok = setErr("age", age >= 18 && age <= 65 ? "" : "السن لازم يكون من 18 لـ 65.") && ok;
-    ok = setErr("gov", form.elements["gov"].value ? "" : "اختار المحافظة.") && ok;
-    ok = setErr("area", form.elements["area"].value.trim() ? "" : "اكتب المنطقة.") && ok;
+    ok = setErr("msg", document.getElementById("msg").value.trim() ? "" : "اكتب إنت عايز تتواصل في إيه.") && ok;
     return ok;
   }
 
@@ -220,12 +161,10 @@ form[hidden], .done[hidden] { display: none; }
     ev.preventDefault();
     statusEl.textContent = ""; statusEl.className = "status";
     if (!validate()) { statusEl.textContent = "راجع الخانات اللي فيها ملاحظات."; statusEl.className = "status bad"; return; }
-    if (form.elements["_gotcha"].value) { return; }
-    if (!FORM_ENDPOINT) { statusEl.textContent = "الفورم لسه مش متوصل بالإيميل. كلّم صاحب الصفحة."; statusEl.className = "status bad"; return; }
+    if (document.getElementById("website").value) { return; }
 
     var data = new FormData(form);
-    data.set("الموبايل", toLatinDigits(form.elements["phone"].value).replace(/[\s-]/g, ""));
-    data.set("السن", String(parseInt(toLatinDigits(form.elements["age"].value), 10)));
+    data.set("الموبايل", toLatinDigits(document.getElementById("phone").value).replace(/[\s-]/g, ""));
 
     send.disabled = true; send.textContent = "جاري الإرسال...";
     fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { "Accept": "application/json" } })
